@@ -72,7 +72,6 @@ def export_collision_shape(escn_file, export_settings, node, parent_gd_node,
     shape_id = None
     col_shape = None
     if rbd.collision_shape in ("CONVEX_HULL", "MESH"):
-        is_convex = rbd.collision_shape == "CONVEX_HULL"
         if rbd.collision_shape == "CONVEX_HULL":
             shape_id = generate_convex_shape(
                 escn_file, export_settings, node
