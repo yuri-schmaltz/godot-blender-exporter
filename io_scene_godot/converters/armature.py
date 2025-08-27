@@ -89,7 +89,6 @@ def ordered_bones(bones):
     ordered = []
 
     def visit(bone):
-        nonlocal ordered
         ordered.append(bone)
 
         for child in bone.children:

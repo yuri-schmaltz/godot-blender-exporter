@@ -13,7 +13,7 @@ def export_multimesh_node(escn_file, export_settings,
     """Export blender particle to a MultiMeshInstance"""
     context = bpy.context
     dg_eval = context.evaluated_depsgraph_get()
-    obj_eval = context.object.evaluated_get(dg_eval)
+    obj_eval = obj.evaluated_get(dg_eval)
 
     multimeshid_active = None
     for _ps in obj_eval.particle_systems:
@@ -59,7 +59,7 @@ def has_particle(node):
     """Returns True if the object has particles"""
     context = bpy.context
     dg_eval = context.evaluated_depsgraph_get()
-    obj_eval = context.object.evaluated_get(dg_eval)
+    obj_eval = node.evaluated_get(dg_eval)
 
     return len(obj_eval.particle_systems) > 0
 
@@ -132,7 +132,6 @@ class MultiMeshConverter:
         """Evaluates object & converts to final multimesh, ready for export.
         The multimesh is only temporary."""
         transform_array = []
-        float32array = ''
         for _particle in self.particle_system.particles:
             quat_x = mathutils.Quaternion((1.0, 0.0, 0.0), math.radians(90.0))
             quat_y = mathutils.Quaternion((0.0, 1.0, 0.0), math.radians(90.0))
